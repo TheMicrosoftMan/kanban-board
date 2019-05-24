@@ -1,0 +1,11 @@
+.transparent-button {
+  width: max-content;
+  background: rgba(173, 90, 90, 0.493);
+  color: aliceblue;
+  padding: 9px 16px;
+  cursor: pointer;
+}
+
+.transparent-button:hover {
+  background: rgba(231, 143, 143, 0.644);
+}

@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.main {
+    // background: url(images/aharrypotterhotspot.jpg) center no-repeat;
+    background: rgb(127, 176, 199);
+    height: 100vh;
+
+    .board {
+        width: 100%;
+        margin: 10px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+}
+
+h2 {
+    color: green;
+}

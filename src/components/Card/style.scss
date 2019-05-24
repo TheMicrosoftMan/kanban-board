@@ -1,0 +1,51 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  margin: 4px;
+  border-radius: 4px;
+  font-size: 12px;
+
+  &_title {
+    display: flex;
+    justify-content: space-between;
+
+    &_name {
+      color: #000;
+      font-style: bold;
+      font-weight: 600;
+      padding: 2px 4px;
+    }
+
+    .card_actions_icon {
+      fill: silver;
+      cursor: pointer;
+    }
+  }
+
+  &_executant {
+    color: red;
+    padding: 2px 4px;
+  }
+  &_date-creat,
+  &_date-edit {
+    color: silver;
+    padding: 2px 4px;
+  }
+
+  &_date-edit {
+    font-style: italic;
+  }
+}
+
+.card_GREEN {
+  border-bottom: green 3px solid;
+}
+
+.card_RED {
+  border-bottom: red 3px solid;
+}
+
+.card_BLUE {
+  border-bottom: blue 3px solid;
+}

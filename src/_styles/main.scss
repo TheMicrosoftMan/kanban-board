@@ -1,0 +1,18 @@
+@import "~bootstrap/scss/bootstrap.scss";
+@import "../containers/Login/style.scss";
+@import "../containers/Main/style.scss";
+@import "../components/SignBlock/style.scss";
+@import "../components/Header/style.scss";
+@import "../components/TransparentButton/style.scss";
+@import "../components/Coloumn/style.scss";
+@import "../components/Card/style.scss";
+
+.d-flex {
+  display: flex;
+}
+
+.d-flex_con-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
