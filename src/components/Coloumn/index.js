@@ -39,6 +39,11 @@ class Coloumn extends React.Component {
     this.setState({ showEditModal: true });
   }
 
+  editColumn = ({id, name}) => {
+    this.props.editColumn(this.props.user.login, id, name);
+    this.closeEditModalHandler();
+  };
+
   deleteColumn = columnID => {
     this.props.deleteColumn(this.props.user.login, columnID);
     this.closeDeleteModalHandler();
@@ -85,11 +90,10 @@ class Coloumn extends React.Component {
         />
         <EditModal
           show={this.state.showEditModal}
-          card={{
-            name: this.props.name
-          }}
+          name={this.props.name}
+          id={this.props.id}
           handleClose={this.closeEditModalHandler}
-          handleSave={this.closeEditModalHandler}
+          handleSave={this.editColumn}
         />
       </div>
     );
@@ -102,6 +106,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+  editColumn: boardActions.editColumn,
   deleteColumn: boardActions.deleteColumn
 };
 

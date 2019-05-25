@@ -47,6 +47,7 @@ class EditModal extends React.Component {
             type="submit"
             onClick={() =>
               this.props.handleSave({
+                id: this.props.id,
                 name: this.state.name,
                 executant: this.state.executant
               })

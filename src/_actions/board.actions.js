@@ -68,6 +68,32 @@ export const addColumn = (login, columnName) => dispatch => {
   }
 };
 
+export const editColumn = (login, columnID, newColumnName) => dispatch => {
+  dispatch({ type: boardConstants.EDIT_COLUMN_REQUEST });
+  try {
+    let board = JSON.parse(localStorage.getItem(`${login}_board`));
+    let newColumnsArr = board.columns.map(column => {
+      if (column.id === columnID) {
+        column.columnName = newColumnName;
+        return column;
+      } else {
+        return column;
+      }
+    });
+    board.columns = newColumnsArr;
+    localStorage.setItem(`${login}_board`, JSON.stringify(board));
+    dispatch({
+      type: boardConstants.EDIT_COLUMN_SUCCESS,
+      payload: board
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: boardConstants.EDIT_COLUMN_ERROR
+    });
+  }
+};
+
 export const deleteColumn = (login, columnID) => dispatch => {
   dispatch({ type: boardConstants.DELETE_COLUMN_REQUEST });
   try {
