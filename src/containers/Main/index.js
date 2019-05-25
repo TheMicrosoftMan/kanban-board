@@ -8,6 +8,7 @@ import { Coloumn } from "../../components/Coloumn";
 import EditModal from "../../components/Modals/edit.modal";
 import TransparentButton from "../../components/TransparentButton";
 import * as boardActions from "../../_actions/board.actions";
+import * as signActions from "../../_actions/sign.actions";
 
 moment.locale("uk");
 
@@ -70,7 +71,7 @@ class Main extends React.Component {
   render() {
     return (
       <div className="main">
-        <Header username={this.props.user.login} />
+        <Header username={this.props.user.login} userExit={this.props.userExit} />
         <div className="d-flex board">
           {this.props.board.board.columns &&
             this.props.board.board.columns.map(column => {
@@ -101,7 +102,8 @@ class Main extends React.Component {
 const mapDispatchToProps = {
   getBoard: boardActions.getBoard,
   addColumn: boardActions.addColumn,
-  deleteColumn: boardActions.deleteColumn
+  deleteColumn: boardActions.deleteColumn,
+  userExit: signActions.exitUser
 };
 
 function mapStateToProps(state) {

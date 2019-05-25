@@ -8,7 +8,7 @@ const Header = props => {
         <span className="username">{props.username}</span>
       </div>
       <span className="logo">Kanban board</span>
-      <TransparentButton value="Exit" />
+      <TransparentButton clickHandler={props.userExit} value="Exit" />
     </div>
   );
 };
