@@ -36,6 +36,18 @@ export function user(state = initialState, action) {
       return {
         ...state
       };
+    case loginConstants.USER_EXIT_REQUEST:
+      return {
+        ...state
+      };
+    case loginConstants.USER_EXIT_SUCCESS:
+      return {
+        ...initialState
+      };
+    case loginConstants.USER_EXIT_ERROR:
+      return {
+        ...state
+      };
     default:
       return {
         ...state

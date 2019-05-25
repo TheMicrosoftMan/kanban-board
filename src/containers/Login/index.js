@@ -9,9 +9,16 @@ class Login extends React.Component {
     error: ""
   };
 
+  componentDidMount() {
+    this.props.userAutoLogin();
+  }
+
   userRegister = (login, password) => {
-    this.props.registerUser({ login, password });
-    this.props.addBoard(login);
+    if (this.props.registerUser({ login, password })) {
+      this.props.addBoard(login);
+    } else {
+      this.setState({ error: "Такий логін вже існує" });
+    }
   };
 
   userLogin = (login, password) => {
@@ -40,6 +47,7 @@ class Login extends React.Component {
 
 const mapDispatchToProps = {
   registerUser: signActions.registerUser,
+  userAutoLogin: signActions.autologinUser,
   userLogin: signActions.loginUser,
   addBoard: boardActions.addBoard
 };
