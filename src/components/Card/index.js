@@ -64,6 +64,12 @@ class Card extends React.Component {
         <div className={`card ${labelColor}`}>
           <div className="card_title">
             <span className="card_name">{this.props.cardName}</span>
+            <img
+              src={`https://ui-avatars.com/api/?rounded=true&background=${Math.floor(
+                Math.random() * 16777215
+              ).toString(16)}&color=fff&name=${this.props.executant}`}
+              alt={this.props.executant}
+            />
             <div className="d-flex">
               <Edit
                 className="card_actions_icon"
