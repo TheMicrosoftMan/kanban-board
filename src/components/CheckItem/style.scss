@@ -1,0 +1,22 @@
+.check-item,
+.new-check-item {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+
+  .check,
+  .no-check {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .check {
+    background: green;
+  }
+
+  .no-check {
+    background: silver;
+  }
+}
