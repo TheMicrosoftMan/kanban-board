@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Col, Modal, Button } from "react-bootstrap";
+import CheckItem from "../CheckItem";
 import { labelConstants } from "../../_constants";
 
 let enabledLabels = [
@@ -20,9 +21,47 @@ class EditModal extends React.Component {
       timeEdition: null,
       label: props.label || labelConstants.BLUE,
       comment: props.comment || "",
-      checkList: props.checkList || []
+      checkList: props.checkList || [],
+      image: props.image || null
     };
+
+    this.newCheckItemInputRef = React.createRef();
   }
+
+  addCheckItem = () => {
+    const currentCheckList = this.state.checkList;
+    currentCheckList.push({
+      id: Math.random() * (1000 - 1) + 1,
+      isCheck: false,
+      text: this.newCheckItemInputRef.current.value
+    });
+    this.newCheckItemInputRef.current.value = "";
+    this.setState({ checkList: currentCheckList });
+  };
+
+  checkItem = id => {
+    const currentCheckList = this.state.checkList;
+    const newCheckList = currentCheckList.map(checkItem => {
+      if (checkItem.id === id) {
+        checkItem.isCheck = !checkItem.isCheck;
+        return checkItem;
+      } else {
+        return checkItem;
+      }
+    });
+    this.setState({ checkList: newCheckList });
+  };
+
+  imageUpload = e => {
+    let image = e.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(image);
+    reader.onload = () => {
+      this.setState({
+        image: reader.result
+      });
+    };
+  };
 
   render() {
     return (
@@ -87,21 +126,35 @@ class EditModal extends React.Component {
               <Form.Group as={Col} controlId="validationFormik02">
                 <Form.Label>Чек - ліст</Form.Label>
                 <div className="check-list">
-                  {this.state.checkList.map((checkItem, index) => {
-                    return (
-                      <div key={index} className="check-item">
-                        <div
-                          className={checkItem.isCheck ? "check" : "no-check"}
+                  {this.state.checkList.length > 0 ? (
+                    this.state.checkList.map((checkItem, index) => {
+                      return (
+                        <CheckItem
+                          key={index}
+                          id={checkItem.id}
+                          isCheck={checkItem.isCheck}
+                          text={checkItem.text}
+                          checkClick={this.checkItem}
                         />
-                        <div className="check-item_text">{checkItem.text}</div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })
+                  ) : (
+                    <span>Чек - ліст пустий</span>
+                  )}
                   <div className="new-check-item">
-                    <div className="no-check" />
-                    <input type="text" />
+                    <input type="text" ref={this.newCheckItemInputRef} />
+                    <button type="button" onClick={this.addCheckItem}>
+                      Add checkItem
+                    </button>
                   </div>
                 </div>
+              </Form.Group>
+              <Form.Group as={Col} controlId="validationFormik02">
+                <Form.Label>Зображення</Form.Label>
+                {this.state.image && (
+                  <img src={this.state.image} alt="CardImg" />
+                )}
+                <input type="file" onChange={e => this.imageUpload(e)} />
               </Form.Group>
             </React.Fragment>
           )}
@@ -117,6 +170,7 @@ class EditModal extends React.Component {
                   label: this.state.label,
                   comment: this.state.comment,
                   checkList: this.state.checkList,
+                  image: this.state.image,
                   dateCreate: this.props.dateCreate
                 });
               } else {

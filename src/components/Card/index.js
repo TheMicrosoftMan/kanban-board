@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import moment from "moment";
 import DeleteModal from "../Modals/delete.modal";
 import EditModal from "../Modals/edit.modal";
+import CardModal from "../Modals/card.modal";
 import { ReactComponent as Edit } from "../../images/edit.svg";
 import { ReactComponent as Delete } from "../../images/delete.svg";
 import * as boardActions from "../../_actions/board.actions";
@@ -15,10 +16,13 @@ class Card extends React.Component {
     this.closeDeleteModalHandler = this.closeDeleteModalHandler.bind(this);
     this.showEditModalHandler = this.showEditModalHandler.bind(this);
     this.closeEditModalHandler = this.closeEditModalHandler.bind(this);
+    this.showCardModalHandler = this.showCardModalHandler.bind(this);
+    this.closeCardModalHandler = this.closeCardModalHandler.bind(this);
 
     this.state = {
       showDeleteModal: false,
-      showEditModal: false
+      showEditModal: false,
+      showCardModal: false
     };
   }
 
@@ -36,6 +40,14 @@ class Card extends React.Component {
 
   showEditModalHandler() {
     this.setState({ showEditModal: true });
+  }
+
+  closeCardModalHandler() {
+    this.setState({ showCardModal: false });
+  }
+
+  showCardModalHandler() {
+    this.setState({ showCardModal: true });
   }
 
   editCard = card => {
@@ -58,18 +70,13 @@ class Card extends React.Component {
   };
 
   render() {
+    debugger;
     let labelColor = `card_${this.props.label}`;
     return (
       <React.Fragment>
         <div className={`card ${labelColor}`}>
           <div className="card_title">
             <span className="card_name">{this.props.cardName}</span>
-            <img
-              src={`https://ui-avatars.com/api/?rounded=true&background=${Math.floor(
-                Math.random() * 16777215
-              ).toString(16)}&color=fff&name=${this.props.executant}`}
-              alt={this.props.executant}
-            />
             <div className="d-flex">
               <Edit
                 className="card_actions_icon"
@@ -81,15 +88,24 @@ class Card extends React.Component {
               />
             </div>
           </div>
-          <span className="card_executant">{this.props.executant}</span>
-          <span className="card_date-creat">
-            Created: {this.props.dateCreate}
-          </span>
-          {this.props.dateEdit && (
-            <span className="card_date-edit">
-              Edited: {this.props.dateEdit}
+          <div className="card_body" onClick={this.showCardModalHandler}>
+            <img
+              src={`https://ui-avatars.com/api/?rounded=true&background=65aadd&color=fff&name=${
+                this.props.executant
+              }`}
+              alt={this.props.executant}
+            />
+            {this.props.image && <img src={this.props.image} alt="CardImg" />}
+            <span className="card_body_executant">{this.props.executant}</span>
+            <span className="card_body_date-creat">
+              Created: {this.props.dateCreate}
             </span>
-          )}
+            {this.props.dateEdit && (
+              <span className="card_body_date-edit">
+                Edited: {this.props.dateEdit}
+              </span>
+            )}
+          </div>
         </div>
         <DeleteModal
           id={this.props.id}
@@ -108,8 +124,21 @@ class Card extends React.Component {
           checkList={this.props.checkList}
           comment={this.props.comment}
           dateCreate={this.props.dateCreate}
+          image={this.props.image}
           handleClose={this.closeEditModalHandler}
           handleSave={this.editCard}
+        />
+        <CardModal
+          show={this.state.showCardModal}
+          name={this.props.cardName}
+          executant={this.props.executant}
+          label={this.props.label}
+          checkList={this.props.checkList}
+          comment={this.props.comment}
+          dateCreate={this.props.dateCreate}
+          dateEdit={this.props.dateEdit}
+          image={this.props.image}
+          handleClose={this.closeCardModalHandler}
         />
       </React.Fragment>
     );

@@ -99,6 +99,7 @@ class Coloumn extends React.Component {
               label={card.label}
               checkList={card.checkList}
               comment={card.comment}
+              image={card.image}
               parrentColumnID={this.props.id}
             />
           );

@@ -23,18 +23,27 @@
     }
   }
 
-  &_executant {
-    color: red;
-    padding: 2px 4px;
-  }
-  &_date-creat,
-  &_date-edit {
-    color: silver;
-    padding: 2px 4px;
-  }
+  &_body {
+    display: flex;
+    flex-direction: column;
 
-  &_date-edit {
-    font-style: italic;
+    img {
+      width: 64px;
+    }
+
+    &_executant {
+      color: red;
+      padding: 2px 4px;
+    }
+    &_date-creat,
+    &_date-edit {
+      color: silver;
+      padding: 2px 4px;
+    }
+
+    &_date-edit {
+      font-style: italic;
+    }
   }
 }
 
