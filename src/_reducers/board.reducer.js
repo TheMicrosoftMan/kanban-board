@@ -42,6 +42,18 @@ export function board(state = initialState, action) {
       return {
         ...state
       };
+    case boardConstants.EDIT_COLUMN_REQUEST:
+      return {
+        ...state
+      };
+    case boardConstants.EDIT_COLUMN_SUCCESS:
+      return {
+        board: action.payload
+      };
+    case boardConstants.EDIT_COLUMN_ERROR:
+      return {
+        ...state
+      };
     case boardConstants.DELETE_COLUMN_REQUEST:
       return {
         ...state
@@ -51,6 +63,42 @@ export function board(state = initialState, action) {
         board: action.payload
       };
     case boardConstants.DELETE_COLUMN_ERROR:
+      return {
+        ...state
+      };
+    case boardConstants.ADD_CARD_REQUEST:
+      return {
+        ...state
+      };
+    case boardConstants.ADD_CARD_SUCCESS:
+      return {
+        board: action.payload
+      };
+    case boardConstants.ADD_CARD_ERROR:
+      return {
+        ...state
+      };
+    case boardConstants.EDIT_CARD_REQUEST:
+      return {
+        ...state
+      };
+    case boardConstants.EDIT_CARD_SUCCESS:
+      return {
+        board: action.payload
+      };
+    case boardConstants.EDIT_CARD_ERROR:
+      return {
+        ...state
+      };
+    case boardConstants.DELETE_CARD_REQUEST:
+      return {
+        ...state
+      };
+    case boardConstants.DELETE_CARD_SUCCESS:
+      return {
+        board: action.payload
+      };
+    case boardConstants.DELETE_CARD_ERROR:
       return {
         ...state
       };

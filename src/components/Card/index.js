@@ -1,8 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
+import moment from "moment";
 import DeleteModal from "../Modals/delete.modal";
 import EditModal from "../Modals/edit.modal";
 import { ReactComponent as Edit } from "../../images/edit.svg";
 import { ReactComponent as Delete } from "../../images/delete.svg";
+import * as boardActions from "../../_actions/board.actions";
 
 class Card extends React.Component {
   constructor(props) {
@@ -35,6 +38,25 @@ class Card extends React.Component {
     this.setState({ showEditModal: true });
   }
 
+  editCard = card => {
+    card.dateEdit = moment().format("lll");
+    this.props.editCard(
+      this.props.user.login,
+      this.props.parrentColumnID,
+      card
+    );
+    this.closeEditModalHandler();
+  };
+
+  deleteCard = cardID => {
+    this.props.deleteCard(
+      this.props.user.login,
+      this.props.parrentColumnID,
+      cardID
+    );
+    this.closeDeleteModalHandler();
+  };
+
   render() {
     let labelColor = `card_${this.props.label}`;
     return (
@@ -42,6 +64,12 @@ class Card extends React.Component {
         <div className={`card ${labelColor}`}>
           <div className="card_title">
             <span className="card_name">{this.props.cardName}</span>
+            <img
+              src={`https://ui-avatars.com/api/?rounded=true&background=${Math.floor(
+                Math.random() * 16777215
+              ).toString(16)}&color=fff&name=${this.props.executant}`}
+              alt={this.props.executant}
+            />
             <div className="d-flex">
               <Edit
                 className="card_actions_icon"
@@ -64,24 +92,42 @@ class Card extends React.Component {
           )}
         </div>
         <DeleteModal
+          id={this.props.id}
           show={this.state.showDeleteModal}
           name={this.props.cardName}
           handleClose={this.closeDeleteModalHandler}
-          handleSave={this.closeDeleteModalHandler}
+          handleSave={this.deleteCard}
         />
         <EditModal
           show={this.state.showEditModal}
-          card={{
-            name: this.props.cardName,
-            executant: this.props.executant,
-            label: this.props.label
-          }}
+          card={true}
+          id={this.props.id}
+          name={this.props.cardName}
+          executant={this.props.executant}
+          label={this.props.label}
+          checkList={this.props.checkList}
+          comment={this.props.comment}
+          dateCreate={this.props.dateCreate}
           handleClose={this.closeEditModalHandler}
-          handleSave={this.closeEditModalHandler}
+          handleSave={this.editCard}
         />
       </React.Fragment>
     );
   }
 }
 
-export default Card;
+function mapStateToProps(state) {
+  const { user } = state;
+  return { user };
+}
+
+const mapDispatchToProps = {
+  editCard: boardActions.editCard,
+  deleteCard: boardActions.deleteCard
+};
+
+const connectedCard = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Card);
+export { connectedCard as Card };

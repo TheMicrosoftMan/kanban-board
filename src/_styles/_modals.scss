@@ -1,0 +1,57 @@
+.label-picker {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .label {
+    width: 50px;
+    height: 20px;
+    border: 1px solid aliceblue;
+  }
+
+  .label_GREEN {
+    background: green;
+  }
+
+  .label_RED {
+    background: red;
+  }
+
+  .label_BLUE {
+    background: blue;
+  }
+}
+
+.check-list {
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+
+  .check-item,
+  .new-check-item {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+
+    .check,
+    .no-check {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+    }
+
+    .check {
+      background: green;
+    }
+
+    .no-check {
+      background: silver;
+    }
+  }
+
+  .new-check-item {
+    opacity: 0.5;
+    border-top: 2px solid silver;
+    margin-top: 15px;
+  }
+}

@@ -68,6 +68,32 @@ export const addColumn = (login, columnName) => dispatch => {
   }
 };
 
+export const editColumn = (login, columnID, newColumnName) => dispatch => {
+  dispatch({ type: boardConstants.EDIT_COLUMN_REQUEST });
+  try {
+    let board = JSON.parse(localStorage.getItem(`${login}_board`));
+    let newColumnsArr = board.columns.map(column => {
+      if (column.id === columnID) {
+        column.columnName = newColumnName;
+        return column;
+      } else {
+        return column;
+      }
+    });
+    board.columns = newColumnsArr;
+    localStorage.setItem(`${login}_board`, JSON.stringify(board));
+    dispatch({
+      type: boardConstants.EDIT_COLUMN_SUCCESS,
+      payload: board
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: boardConstants.EDIT_COLUMN_ERROR
+    });
+  }
+};
+
 export const deleteColumn = (login, columnID) => dispatch => {
   dispatch({ type: boardConstants.DELETE_COLUMN_REQUEST });
   try {
@@ -85,6 +111,107 @@ export const deleteColumn = (login, columnID) => dispatch => {
     console.error(error);
     dispatch({
       type: boardConstants.DELETE_COLUMN_ERROR
+    });
+  }
+};
+
+export const addCard = (login, columnID, card) => dispatch => {
+  dispatch({ type: boardConstants.ADD_CARD_REQUEST });
+  try {
+    let board = JSON.parse(localStorage.getItem(`${login}_board`));
+    let updatedColumn = board.columns.filter(column => {
+      return column.id === columnID;
+    });
+    updatedColumn[0].cards.push(card);
+    let updatedColumns = board.columns.map(column => {
+      if (column.id === updatedColumn.id) {
+        return updatedColumn[0];
+      } else {
+        return column;
+      }
+    });
+    board.columns = updatedColumns;
+    localStorage.setItem(`${login}_board`, JSON.stringify(board));
+    dispatch({
+      type: boardConstants.ADD_CARD_SUCCESS,
+      payload: board
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: boardConstants.ADD_CARD_ERROR
+    });
+  }
+};
+
+export const editCard = (login, columnID, editedCard) => dispatch => {
+  dispatch({ type: boardConstants.EDIT_CARD_REQUEST });
+  try {
+    let board = JSON.parse(localStorage.getItem(`${login}_board`));
+    let selectedColumn = board.columns.filter(column => {
+      return column.id === columnID;
+    });
+    let newCardsArr = selectedColumn[0].cards.map(card => {
+      if (card.id === editedCard.id) {
+        return editedCard;
+      } else {
+        return card;
+      }
+    });
+    selectedColumn[0].cards = newCardsArr;
+    let updatedColumns = board.columns.map(column => {
+      if (column.id === selectedColumn.id) {
+        return selectedColumn[0];
+      } else {
+        return column;
+      }
+    });
+    board.columns = updatedColumns;
+    localStorage.setItem(`${login}_board`, JSON.stringify(board));
+    dispatch({
+      type: boardConstants.EDIT_CARD_SUCCESS,
+      payload: board
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: boardConstants.EDIT_CARD_ERROR
+    });
+  }
+};
+
+export const deleteCard = (login, columnID, cardID) => dispatch => {
+  dispatch({ type: boardConstants.DELETE_CARD_REQUEST });
+  try {
+    let board = JSON.parse(localStorage.getItem(`${login}_board`));
+    let selectedColumn = board.columns.filter(column => {
+      return column.id === columnID;
+    });
+    let newCardsArr = selectedColumn[0].cards.filter(card => {
+      if (card.id === cardID) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    selectedColumn[0].cards = newCardsArr;
+    let updatedColumns = board.columns.map(column => {
+      if (column.id === selectedColumn.id) {
+        return selectedColumn[0];
+      } else {
+        return column;
+      }
+    });
+    board.columns = updatedColumns;
+    localStorage.setItem(`${login}_board`, JSON.stringify(board));
+    dispatch({
+      type: boardConstants.DELETE_CARD_SUCCESS,
+      payload: board
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: boardConstants.DELETE_CARD_ERROR
     });
   }
 };
