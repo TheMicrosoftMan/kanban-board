@@ -4,23 +4,35 @@ export const registerUser = authParams => dispatch => {
   dispatch({ type: registerConstants.USER_REGISTER_REQUEST });
   try {
     let newUser = {
-      id: 1,
       login: authParams.login,
       password: authParams.password
     };
     let users = JSON.parse(localStorage.getItem("users"));
-    if (users.some(user => user.login === newUser.login)) {
-      dispatch({
-        type: registerConstants.USER_REGISTER_ERROR
-      });
-      return false;
-    } else {
-      if (users) {
-        users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(users));
+    if (users) {
+      if (users.some(user => user.login === newUser.login)) {
+        dispatch({
+          type: registerConstants.USER_REGISTER_ERROR
+        });
+        return false;
       } else {
-        localStorage.setItem("users", JSON.stringify([newUser]));
+        if (users) {
+          users.push(newUser);
+          localStorage.setItem("users", JSON.stringify(users));
+        } else {
+          localStorage.setItem("users", JSON.stringify([newUser]));
+        }
+        localStorage.setItem("lastAuthUser", JSON.stringify(newUser));
+        dispatch({
+          type: registerConstants.USER_REGISTER_SUCCESS,
+          payload: {
+            login: authParams.login,
+            password: authParams.password
+          }
+        });
+        return true;
       }
+    } else {
+      localStorage.setItem("users", JSON.stringify([newUser]));
       localStorage.setItem("lastAuthUser", JSON.stringify(newUser));
       dispatch({
         type: registerConstants.USER_REGISTER_SUCCESS,

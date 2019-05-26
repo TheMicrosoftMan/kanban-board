@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import Card from "../Card";
+import moment from "moment";
+import { Card } from "../Card";
 import DeleteModal from "../Modals/delete.modal";
 import EditModal from "../Modals/edit.modal";
 import { ReactComponent as Add } from "../../images/add.svg";
@@ -16,10 +17,13 @@ class Coloumn extends React.Component {
     this.closeDeleteModalHandler = this.closeDeleteModalHandler.bind(this);
     this.showEditModalHandler = this.showEditModalHandler.bind(this);
     this.closeEditModalHandler = this.closeEditModalHandler.bind(this);
+    this.showAddCardModalHandler = this.showAddCardModalHandler.bind(this);
+    this.closeAddCardModalHandler = this.closeAddCardModalHandler.bind(this);
 
     this.state = {
       showDeleteModal: false,
-      showEditModal: false
+      showEditModal: false,
+      showAddCardModal: false
     };
   }
 
@@ -39,7 +43,7 @@ class Coloumn extends React.Component {
     this.setState({ showEditModal: true });
   }
 
-  editColumn = ({id, name}) => {
+  editColumn = ({ id, name }) => {
     this.props.editColumn(this.props.user.login, id, name);
     this.closeEditModalHandler();
   };
@@ -47,6 +51,20 @@ class Coloumn extends React.Component {
   deleteColumn = columnID => {
     this.props.deleteColumn(this.props.user.login, columnID);
     this.closeDeleteModalHandler();
+  };
+
+  closeAddCardModalHandler() {
+    this.setState({ showAddCardModal: false });
+  }
+
+  showAddCardModalHandler() {
+    this.setState({ showAddCardModal: true });
+  }
+
+  addCard = card => {
+    card.dateCreate = moment().format("lll");
+    this.props.addCard(this.props.user.login, this.props.id, card);
+    this.closeAddCardModalHandler();
   };
 
   render() {
@@ -57,7 +75,7 @@ class Coloumn extends React.Component {
           <div className="coloumn_title_actions">
             <Add
               className="coloumn_actions_icon"
-              onClick={this.showEditModalHandler}
+              onClick={this.showAddCardModalHandler}
             />
             <Edit
               className="coloumn_actions_icon"
@@ -73,11 +91,15 @@ class Coloumn extends React.Component {
           return (
             <Card
               key={card.id}
-              cardName={card.cardName}
-              executant={card.executant}
+              id={card.id}
+              cardName={card.name}
+              executant={card.author}
               dateCreate={card.dateCreate}
-              dateEdit={card.dateEdit}
+              dateEdit={card.dateEdit ? card.dateEdit : null}
               label={card.label}
+              checkList={card.checkList}
+              comment={card.comment}
+              parrentColumnID={this.props.id}
             />
           );
         })}
@@ -92,8 +114,17 @@ class Coloumn extends React.Component {
           show={this.state.showEditModal}
           name={this.props.name}
           id={this.props.id}
+          card={false}
           handleClose={this.closeEditModalHandler}
           handleSave={this.editColumn}
+        />
+        <EditModal
+          show={this.state.showAddCardModal}
+          name={this.props.name}
+          id={Math.random() * (1000 - 1) + 1}
+          card={true}
+          handleClose={this.closeAddCardModalHandler}
+          handleSave={this.addCard}
         />
       </div>
     );
@@ -107,7 +138,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   editColumn: boardActions.editColumn,
-  deleteColumn: boardActions.deleteColumn
+  deleteColumn: boardActions.deleteColumn,
+  addCard: boardActions.addCard
 };
 
 const connectedColoumn = connect(
