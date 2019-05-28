@@ -70,14 +70,22 @@ class Card extends React.Component {
   };
 
   render() {
-    debugger;
     let labelColor = `card_${this.props.label}`;
     return (
       <React.Fragment>
         <div className={`card ${labelColor}`}>
           <div className="card_title">
-            <span className="card_name">{this.props.cardName}</span>
-            <div className="d-flex">
+            <div className="card_name" onClick={this.showCardModalHandler}>
+              <img
+                className="card_executant_image"
+                src={`https://ui-avatars.com/api/?rounded=true&background=65aadd&color=fff&name=${
+                  this.props.executant
+                }`}
+                alt={this.props.executant}
+              />
+              {this.props.cardName}
+            </div>
+            <div className="card_title_actions">
               <Edit
                 className="card_actions_icon"
                 onClick={this.showEditModalHandler}
@@ -89,20 +97,19 @@ class Card extends React.Component {
             </div>
           </div>
           <div className="card_body" onClick={this.showCardModalHandler}>
-            <img
-              src={`https://ui-avatars.com/api/?rounded=true&background=65aadd&color=fff&name=${
-                this.props.executant
-              }`}
-              alt={this.props.executant}
-            />
-            {this.props.image && <img src={this.props.image} alt="CardImg" />}
-            <span className="card_body_executant">{this.props.executant}</span>
+            {this.props.image && (
+              <img
+                className="card_body_image"
+                src={this.props.image}
+                alt="CardImg"
+              />
+            )}
             <span className="card_body_date-creat">
-              Created: {this.props.dateCreate}
+              Створено: {this.props.dateCreate}
             </span>
             {this.props.dateEdit && (
               <span className="card_body_date-edit">
-                Edited: {this.props.dateEdit}
+                Відредаговано: {this.props.dateEdit}
               </span>
             )}
           </div>

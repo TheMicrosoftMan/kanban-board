@@ -6,27 +6,31 @@ const CardModal = props => {
   return (
     <Modal show={props.show} onHide={props.handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Card {props.name}</Modal.Title>
+        <Modal.Title>Картка {props.name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form.Group as={Col} controlId="validationFormik01">
           <Form.Label>Завдання</Form.Label>
           <p>{props.name}</p>
         </Form.Group>
-        <Form.Group as={Col} controlId="validationFormik02">
-          <Form.Label>Автор</Form.Label>
-          <p>{props.executant}</p>
-        </Form.Group>
+        {props.executant && (
+          <Form.Group as={Col} controlId="validationFormik02">
+            <Form.Label>Автор</Form.Label>
+            <p>{props.executant}</p>
+          </Form.Group>
+        )}
         <Form.Group as={Col} controlId="validationFormik02">
           <Form.Label>Мітка</Form.Label>
-          <div className="label-picker">
+          <div className="selected-label-block">
             <div className={`label label_${props.label}`} />
           </div>
         </Form.Group>
-        <Form.Group as={Col} controlId="validationFormik02">
-          <Form.Label>Коментарій</Form.Label>
-          <p>{props.comment}</p>
-        </Form.Group>
+        {props.comment && (
+          <Form.Group as={Col} controlId="validationFormik02">
+            <Form.Label>Коментарій</Form.Label>
+            <p>{props.comment}</p>
+          </Form.Group>
+        )}
         <Form.Group as={Col} controlId="validationFormik02">
           <Form.Label>Чек - ліст</Form.Label>
           <div className="check-list">
@@ -47,14 +51,24 @@ const CardModal = props => {
           </div>
         </Form.Group>
         <Form.Group as={Col} controlId="validationFormik02">
-          <p>Час створення: {props.dateCreate}</p>
-          {props.dateEdit && <p>Час редагування: {props.dateEdit}</p>}
+          {props.image && (
+            <div className="image-block">
+              <img src={props.image} alt="CardImg" />
+            </div>
+          )}
         </Form.Group>
         <Form.Group as={Col} controlId="validationFormik02">
-          {props.image && <img src={props.image} alt="CardImg" />}
+          <Form.Label>Час створення:</Form.Label>
+          <p>{props.dateCreate}</p>
+          {props.dateEdit && (
+            <React.Fragment>
+              <Form.Label>Час редагування:</Form.Label>
+              <p>{props.dateEdit}</p>
+            </React.Fragment>
+          )}
         </Form.Group>
-        <Button variant="secondary" onClick={props.handleClose}>
-          Close
+        <Button className="accept-btn" onClick={props.handleClose}>
+          Закрити
         </Button>
       </Modal.Body>
     </Modal>

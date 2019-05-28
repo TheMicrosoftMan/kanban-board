@@ -2,43 +2,65 @@
   display: flex;
   flex-direction: column;
   background: #fff;
-  margin: 4px;
-  border-radius: 4px;
+  margin-top: 6px;
+  border-radius: 2px;
   font-size: 12px;
+  padding: 7px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: 0.3s;
+  cursor: pointer;
 
   &_title {
+    font-family: "Segoe UI Semibold";
+    font-size: 11pt;
+    line-height: 11pt;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    color: $font-color;
 
-    &_name {
-      color: #000;
-      font-style: bold;
-      font-weight: 600;
-      padding: 2px 4px;
+    .card_name {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      .card_executant_image {
+        width: 25px;
+        height: 25px;
+        margin-right: 6px;
+      }
     }
 
-    .card_actions_icon {
-      fill: silver;
-      cursor: pointer;
+    .card_title_actions {
+      display: flex;
+      align-items: center;
+      display: none;
+
+      .card_actions_icon {
+        fill: $font-color;
+        height: 14px;
+        margin: 0 3px;
+        cursor: pointer;
+      }
     }
   }
 
   &_body {
     display: flex;
     flex-direction: column;
+    margin-top: 6px;
 
-    img {
-      width: 64px;
-    }
-
-    &_executant {
-      color: red;
-      padding: 2px 4px;
+    &_image {
+      width: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 2px;
+      margin-bottom: 2px;
     }
     &_date-creat,
     &_date-edit {
       color: silver;
-      padding: 2px 4px;
     }
 
     &_date-edit {
@@ -47,14 +69,42 @@
   }
 }
 
+.card:hover {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+}
+
+.card:hover .card_title_actions {
+  display: flex;
+}
+
 .card_GREEN {
-  border-bottom: green 3px solid;
+  border-bottom: $green 4px solid;
 }
 
 .card_RED {
-  border-bottom: red 3px solid;
+  border-bottom: $red 4px solid;
 }
 
 .card_BLUE {
-  border-bottom: blue 3px solid;
+  border-bottom: $blue 4px solid;
+}
+
+.card_PURPLE {
+  border-bottom: $purple 4px solid;
+}
+
+.card_DARKEN {
+  border-bottom: $darken 4px solid;
+}
+
+.card_TEAL {
+  border-bottom: $teal 4px solid;
+}
+
+.card_YELLOW {
+  border-bottom: $yellow 4px solid;
+}
+
+.card_MAGENTA {
+  border-bottom: $magenta 4px solid;
 }

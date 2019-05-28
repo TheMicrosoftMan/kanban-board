@@ -1,16 +1,29 @@
 .header {
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(57, 57, 57, 0.3);
   padding: 5px 10px;
+  font-family: "Munson";
+
+  .username-image {
+    width: 45px;
+    margin-right: 6px;
+  }
 
   .username {
+    font-size: 16pt;
     color: #fff;
     margin-right: 10px;
   }
 
   .logo {
+    font-family: "Amontillados";
     color: #fff;
-    font-size: 18pt;
+    font-size: 22pt;
+  }
+
+  .menu-toggle {
+    width: 20px;
+    fill: #fff;
   }
 }

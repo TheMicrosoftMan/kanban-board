@@ -6,7 +6,8 @@ import * as boardActions from "../../_actions/board.actions";
 
 class Login extends React.Component {
   state = {
-    error: ""
+    loginError: "",
+    registrationError: ""
   };
 
   componentDidMount() {
@@ -17,29 +18,34 @@ class Login extends React.Component {
     if (this.props.registerUser({ login, password })) {
       this.props.addBoard(login);
     } else {
-      this.setState({ error: "Такий логін вже існує" });
+      this.setState({ registrationError: "Такий логін вже існує" });
     }
   };
 
   userLogin = (login, password) => {
     if (!this.props.userLogin({ login, password })) {
-      this.setState({ error: "Не правильний логін або пароль" });
+      this.setState({ loginError: "Не правильний логін або пароль" });
     }
   };
 
   render() {
     return (
-      <div className="auth-block">
-        <SignBlock
-          isLogin={true}
-          signHandler={this.userLogin}
-          error={this.state.error}
-        />
-        <SignBlock
-          isLogin={false}
-          signHandler={this.userRegister}
-          error={this.state.error}
-        />
+      <div className="login">
+        <div className="login-block">
+          <span className="logo">Kanban board</span>
+          <div className="login-block_auth-blocks">
+            <SignBlock
+              isLogin={true}
+              signHandler={this.userLogin}
+              error={this.state.loginError}
+            />
+            <SignBlock
+              isLogin={false}
+              signHandler={this.userRegister}
+              error={this.state.registrationError}
+            />
+          </div>
+        </div>
       </div>
     );
   }

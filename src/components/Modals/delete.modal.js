@@ -1,21 +1,30 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Form, Col, Modal, Button } from "react-bootstrap";
 
 const DeleteModal = props => {
   return (
-    <Modal show={props.show} onHide={props.handleClose}>
+    <Modal show={props.show} onHide={props.handleClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Delete {props.name}</Modal.Title>
+        <Modal.Title>Видалення {props.name}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>Delete {props.name}?</Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={props.handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={() => props.handleSave(props.id)}>
-          Save
-        </Button>
-      </Modal.Footer>
+      <Modal.Body>
+        <Form.Group as={Col} controlId="validationFormik02">
+          Видалити {props.name}?
+        </Form.Group>
+        <Form.Group as={Col} controlId="validationFormik02">
+          <div className="buttons-group">
+            <Button
+              className="accept-btn"
+              onClick={() => props.handleSave(props.id)}
+            >
+              Видалити
+            </Button>
+            <Button className="reject-btn" onClick={props.handleClose}>
+              Закрити
+            </Button>
+          </div>
+        </Form.Group>
+      </Modal.Body>
     </Modal>
   );
 };

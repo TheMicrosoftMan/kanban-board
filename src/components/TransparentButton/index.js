@@ -2,7 +2,10 @@ import React from "react";
 
 const TransparentButton = props => {
   return (
-    <div className="transparent-button" onClick={props.clickHandler}>
+    <div
+      className={`transparent-button ${props.className && props.className}`}
+      onClick={props.clickHandler}
+    >
       {props.value}
     </div>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import { Card } from "../Card";
+import TransparentButton from "../../components/TransparentButton";
 import DeleteModal from "../Modals/delete.modal";
 import EditModal from "../Modals/edit.modal";
 import { ReactComponent as Add } from "../../images/add.svg";
@@ -104,6 +105,11 @@ class Coloumn extends React.Component {
             />
           );
         })}
+        <TransparentButton
+          value="+ Додати картку"
+          clickHandler={this.showAddCardModalHandler}
+          className="add-card-btn"
+        />
         <DeleteModal
           show={this.state.showDeleteModal}
           name={this.props.name}
@@ -121,7 +127,6 @@ class Coloumn extends React.Component {
         />
         <EditModal
           show={this.state.showAddCardModal}
-          name={this.props.name}
           id={Math.random() * (1000 - 1) + 1}
           card={true}
           handleClose={this.closeAddCardModalHandler}
