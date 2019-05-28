@@ -1,35 +1,191 @@
-.label-picker {
+.modal-content {
+  background: #fff;
+  border-radius: 0;
+  border: 2px solid rgb(29, 29, 29);
+  border-radius: 0;
+
+  .modal-title {
+    font-family: "Segoe UI";
+  }
+
+  .modal-body {
+    font-family: "Segoe UI";
+
+    .form-label {
+      font-family: "Segoe UI Semibold";
+      font-size: 12pt;
+    }
+
+    .form-control {
+      font-size: 12pt;
+      padding: 5px;
+      width: 100%;
+      background: #fff;
+      color: rgb(29, 29, 29);
+      border: 2px solid rgb(29, 29, 29);
+      border-radius: 0;
+    }
+
+    .selected-label-block {
+      display: flex;
+      align-items: center;
+      margin-bottom: 6px;
+
+      &_text {
+        margin-right: 6px;
+      }
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: none;
+    }
+  }
+
+  .buttons-group {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .accept-btn,
+  .reject-btn,
+  .white-btn,
+  .purple-btn {
+    border: 2px solid rgb(29, 29, 29);
+    border-radius: 0;
+    width: max-content;
+    width: 49%;
+    font-size: 12pt;
+    line-height: 16pt;
+  }
+
+  .accept-btn {
+    background: $blue;
+  }
+
+  .accept-btn:hover {
+    background: #2b5797;
+  }
+
+  .reject-btn {
+    background: $red;
+  }
+
+  .reject-btn:hover {
+    background: #c20c0c;
+  }
+
+  .white-btn {
+    background: #fff;
+    color: #1d1d1d;
+  }
+
+  .white-btn:hover {
+    background: rgb(233, 233, 233);
+  }
+
+  .purple-btn {
+    background: $purple;
+  }
+
+  .purple-btn:hover {
+    background: #492d91;
+  }
+}
+
+.check-list,
+.image-block {
+  span {
+    font-style: italic;
+  }
+}
+
+.label-picker,
+.image-block input {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  border-top: 1px solid rgba(0, 0, 0, 0.4);
+  padding-top: 6px;
+}
 
-  .label {
-    width: 50px;
-    height: 20px;
-    border: 1px solid aliceblue;
+.image-block {
+  img {
+    max-width: 100%;
   }
 
-  .label_GREEN {
-    background: green;
+  input {
+    width: 100%;
+    margin-top: 9px;
   }
+}
 
-  .label_RED {
-    background: red;
-  }
+.label {
+  width: 50px;
+  height: 23px;
+  margin-right: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
 
-  .label_BLUE {
-    background: blue;
-  }
+.label_GREEN {
+  background: $green;
+}
+
+.label_RED {
+  background: $red;
+}
+
+.label_BLUE {
+  background: $blue;
+}
+
+.label_PURPLE {
+  background: $purple;
+}
+
+.label_DARKEN {
+  background: $darken;
+}
+
+.label_TEAL {
+  background: $teal;
+}
+
+.label_YELLOW {
+  background: $yellow;
+}
+
+.label_MAGENTA {
+  background: $magenta;
 }
 
 .check-list {
   display: flex;
   flex-direction: column;
-  padding: 3px;
 }
 
 .new-check-item {
-  opacity: 0.5;
-  border-top: 2px solid silver;
-  margin-top: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.4);
+  padding-top: 6px;
+  margin-top: 9px;
+  display: flex;
+  align-items: center;
+
+  input {
+    margin-right: 6px;
+  }
+
+  input::-webkit-input-placeholder {
+    font-size: 12pt;
+  }
+  input::-moz-placeholder {
+    font-size: 12pt;
+  }
+  input:-ms-input-placeholder {
+    font-size: 12pt;
+  }
+  input:-moz-placeholder {
+    font-size: 12pt;
+  }
 }

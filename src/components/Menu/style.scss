@@ -1,0 +1,48 @@
+.menu {
+  width: 300px;
+  height: max-content;
+  background: #fff;
+  position: absolute;
+  right: 0;
+  background: rgba(255, 255, 255, 0.75);
+  border-bottom-left-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-top: none;
+  display: flex;
+  justify-content: center;
+  color: $font-color;
+  padding: 6px 0;
+
+  &-username {
+    display: flex;
+    align-items: center;
+    font-family: "Munson";
+    font-size: 16pt;
+    margin-left: 6px;
+    margin-bottom: 6px;
+
+    img {
+      width: 44px;
+      margin-right: 6px;
+    }
+  }
+
+  &-btn {
+    color: $font-color;
+    width: 100%;
+    border: 0;
+    background: transparent;
+  }
+
+  &-btn:hover {
+    color: #fff;
+  }
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}

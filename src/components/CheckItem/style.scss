@@ -1,22 +1,57 @@
-.check-item,
-.new-check-item {
+.check-item {
   display: flex;
   flex-direction: row;
-  margin-top: 5px;
+  align-items: center;
+  margin-bottom: 6px;
 
-  .check,
-  .no-check {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
+  &-text {
     cursor: pointer;
   }
 
+  .check,
+  .no-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 6px;
+    cursor: pointer;
+  }
+
+  .check-icon {
+    height: 15px;
+  }
+
   .check {
-    background: green;
+    background: #6cb100;
+    border: 2px solid #6cb100;
+
+    &-icon {
+      fill: #fff;
+    }
   }
 
   .no-check {
-    background: silver;
+    background: transparent;
+    border: 2px solid #b3b3b3;
+
+    .check-icon {
+      display: none;
+    }
   }
+
+  .complete-text {
+    text-decoration: line-through;
+  }
+}
+
+.check-item:hover .no-check .check-icon {
+  display: block;
+  fill: #b3b3b3;
+}
+
+.check-item:last-child {
+  margin: 0;
 }

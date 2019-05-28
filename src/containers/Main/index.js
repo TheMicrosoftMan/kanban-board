@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import "moment/locale/uk";
-import { labelConstants } from "../../_constants/label.constants";
 import Header from "../../components/Header";
+import Menu from "../../components/Menu";
 import { Coloumn } from "../../components/Coloumn";
 import EditModal from "../../components/Modals/edit.modal";
 import TransparentButton from "../../components/TransparentButton";
@@ -11,33 +11,6 @@ import * as boardActions from "../../_actions/board.actions";
 import * as signActions from "../../_actions/sign.actions";
 
 moment.locale("uk");
-
-const cards = [
-  {
-    id: 1,
-    cardName: "Create design",
-    executant: "Vasya Pupkin",
-    dateCreate: moment().format("lll"),
-    dateEdit: moment().format("lll"),
-    label: labelConstants.GREEN
-  },
-  {
-    id: 2,
-    cardName: "Create design",
-    executant: "Vasya Pupkin",
-    dateCreate: moment().format("lll"),
-    dateEdit: moment().format("lll"),
-    label: labelConstants.GREEN
-  },
-  {
-    id: 3,
-    cardName: "Create design",
-    executant: "Vasya Pupkin",
-    dateCreate: moment().format("lll"),
-    dateEdit: moment().format("lll"),
-    label: labelConstants.GREEN
-  }
-];
 
 class Main extends React.Component {
   constructor(props) {
@@ -47,7 +20,8 @@ class Main extends React.Component {
     this.closeEditModalHandler = this.closeEditModalHandler.bind(this);
 
     this.state = {
-      showEditModal: false
+      showEditModal: false,
+      showMenu: false
     };
   }
 
@@ -56,7 +30,7 @@ class Main extends React.Component {
   }
 
   showEditModalHandler() {
-    this.setState({ showEditModal: true });
+    this.setState({ showEditModal: true, showMenu: false });
   }
 
   componentDidMount() {
@@ -68,10 +42,26 @@ class Main extends React.Component {
     this.closeEditModalHandler();
   };
 
+  menuToggle = () => {
+    this.setState({
+      showMenu: !this.state.showMenu
+    });
+  };
+
   render() {
     return (
       <div className="main">
-        <Header username={this.props.user.login} userExit={this.props.userExit} />
+        <Header
+          username={this.props.user.login}
+          userExit={this.props.userExit}
+          menuToggle={this.menuToggle}
+        />
+        <Menu
+          showMenu={this.state.showMenu}
+          username={this.props.user.login}
+          addColumn={this.showEditModalHandler}
+          userExit={this.props.userExit}
+        />
         <div className="d-flex board">
           {this.props.board.board.columns &&
             this.props.board.board.columns.map(column => {
@@ -85,8 +75,9 @@ class Main extends React.Component {
               );
             })}
           <TransparentButton
-            value="Add column"
+            value="+ Додати колонку"
             clickHandler={this.showEditModalHandler}
+            className="add-column-btn"
           />
         </div>
         <EditModal
