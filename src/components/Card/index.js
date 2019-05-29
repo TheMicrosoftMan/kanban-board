@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Draggable } from "react-beautiful-dnd";
 import moment from "moment";
 import DeleteModal from "../Modals/delete.modal";
 import EditModal from "../Modals/edit.modal";
@@ -72,82 +73,95 @@ class Card extends React.Component {
   render() {
     let labelColor = `card_${this.props.label}`;
     return (
-      <React.Fragment>
-        <div className={`card ${labelColor}`}>
-          <div className="card_title">
-            <div className="card_name" onClick={this.showCardModalHandler}>
-              <img
-                className="card_executant_image"
-                src={`https://ui-avatars.com/api/?rounded=true&background=65aadd&color=fff&name=${
-                  this.props.executant
-                }`}
-                alt={this.props.executant}
+      <Draggable draggableId={this.props.id} index={this.props.index}>
+        {provided => (
+          <div
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <React.Fragment>
+              <div className={`card ${labelColor}`}>
+                <div className="card_title">
+                  <div
+                    className="card_name"
+                    onClick={this.showCardModalHandler}
+                  >
+                    <img
+                      className="card_executant_image"
+                      src={`https:ui-avatars.com/api/?rounded=true&background=65aadd&color=fff&name=${
+                        this.props.executant
+                      }`}
+                      alt={this.props.executant}
+                    />
+                    {this.props.cardName}
+                  </div>
+                  <div className="card_title_actions">
+                    <Edit
+                      className="card_actions_icon"
+                      onClick={this.showEditModalHandler}
+                    />
+                    <Delete
+                      className="card_actions_icon"
+                      onClick={this.showDeleteModalHandler}
+                    />
+                  </div>
+                </div>
+                <div className="card_body" onClick={this.showCardModalHandler}>
+                  {this.props.image && (
+                    <img
+                      className="card_body_image"
+                      src={this.props.image}
+                      alt="CardImg"
+                    />
+                  )}
+                  <span className="card_body_date-creat">
+                    Створено: {this.props.dateCreate}
+                  </span>
+                  {this.props.dateEdit && (
+                    <span className="card_body_date-edit">
+                      Відредаговано: {this.props.dateEdit}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <DeleteModal
+                id={this.props.id}
+                show={this.state.showDeleteModal}
+                name={this.props.cardName}
+                handleClose={this.closeDeleteModalHandler}
+                handleSave={this.deleteCard}
               />
-              {this.props.cardName}
-            </div>
-            <div className="card_title_actions">
-              <Edit
-                className="card_actions_icon"
-                onClick={this.showEditModalHandler}
+              <EditModal
+                show={this.state.showEditModal}
+                card={true}
+                id={this.props.id}
+                name={this.props.cardName}
+                executant={this.props.executant}
+                label={this.props.label}
+                checkList={this.props.checkList}
+                comment={this.props.comment}
+                dateCreate={this.props.dateCreate}
+                image={this.props.image}
+                handleClose={this.closeEditModalHandler}
+                handleSave={this.editCard}
               />
-              <Delete
-                className="card_actions_icon"
-                onClick={this.showDeleteModalHandler}
+              <CardModal
+                show={this.state.showCardModal}
+                name={this.props.cardName}
+                executant={this.props.executant}
+                label={this.props.label}
+                checkList={this.props.checkList}
+                comment={this.props.comment}
+                dateCreate={this.props.dateCreate}
+                dateEdit={this.props.dateEdit}
+                image={this.props.image}
+                handleClose={this.closeCardModalHandler}
               />
-            </div>
+            </React.Fragment>
           </div>
-          <div className="card_body" onClick={this.showCardModalHandler}>
-            {this.props.image && (
-              <img
-                className="card_body_image"
-                src={this.props.image}
-                alt="CardImg"
-              />
-            )}
-            <span className="card_body_date-creat">
-              Створено: {this.props.dateCreate}
-            </span>
-            {this.props.dateEdit && (
-              <span className="card_body_date-edit">
-                Відредаговано: {this.props.dateEdit}
-              </span>
-            )}
-          </div>
-        </div>
-        <DeleteModal
-          id={this.props.id}
-          show={this.state.showDeleteModal}
-          name={this.props.cardName}
-          handleClose={this.closeDeleteModalHandler}
-          handleSave={this.deleteCard}
-        />
-        <EditModal
-          show={this.state.showEditModal}
-          card={true}
-          id={this.props.id}
-          name={this.props.cardName}
-          executant={this.props.executant}
-          label={this.props.label}
-          checkList={this.props.checkList}
-          comment={this.props.comment}
-          dateCreate={this.props.dateCreate}
-          image={this.props.image}
-          handleClose={this.closeEditModalHandler}
-          handleSave={this.editCard}
-        />
-        <CardModal
-          show={this.state.showCardModal}
-          name={this.props.cardName}
-          executant={this.props.executant}
-          label={this.props.label}
-          checkList={this.props.checkList}
-          comment={this.props.comment}
-          dateCreate={this.props.dateCreate}
-          dateEdit={this.props.dateEdit}
-          image={this.props.image}
-          handleClose={this.closeCardModalHandler}
-        />
-      </React.Fragment>
+        )}
+      </Draggable>
     );
   }
 }

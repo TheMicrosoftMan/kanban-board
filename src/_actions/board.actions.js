@@ -43,6 +43,27 @@ export const addBoard = login => dispatch => {
   }
 };
 
+export const updateBoard = (login, newBoardColumns) => dispatch => {
+  dispatch({ type: boardConstants.UPDATE_COLUMN_REQUEST });
+  try {
+    let board = {
+      columns: newBoardColumns
+    };
+    localStorage.setItem(`${login}_board`, JSON.stringify(board));
+    dispatch({
+      type: boardConstants.UPDATE_COLUMN_SUCCESS,
+      payload: {
+        board
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: boardConstants.UPDATE_COLUMN_ERROR
+    });
+  }
+};
+
 export const addColumn = (login, columnName) => dispatch => {
   dispatch({ type: boardConstants.ADD_COLUMN_REQUEST });
   try {
