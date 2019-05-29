@@ -2,27 +2,26 @@
   justify-content: space-between;
   align-items: center;
   background: rgba(57, 57, 57, 0.3);
+  color: #fff;
   padding: 5px 10px;
   font-family: "Munson";
 
-  .username-image {
+  &__username-image {
     width: 45px;
     margin-right: 6px;
   }
 
-  .username {
+  &__username {
     font-size: 16pt;
-    color: #fff;
     margin-right: 10px;
   }
 
-  .logo {
+  &__logo {
     font-family: "Amontillados";
-    color: #fff;
     font-size: 22pt;
   }
 
-  .menu-toggle {
+  &__menu-toggle {
     width: 20px;
     fill: #fff;
   }

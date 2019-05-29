@@ -8,7 +8,7 @@ const DeleteModal = props => {
         <Modal.Title>Видалення {props.name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form.Group as={Col} controlId="validationFormik02">
+        <Form.Group as={Col} controlId="validationFormik01">
           Видалити {props.name}?
         </Form.Group>
         <Form.Group as={Col} controlId="validationFormik02">

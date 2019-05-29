@@ -10,7 +10,7 @@
   transition: 0.3s;
   cursor: pointer;
 
-  &_title {
+  &__title {
     font-family: "Segoe UI Semibold";
     font-size: 11pt;
     line-height: 11pt;
@@ -19,26 +19,26 @@
     align-items: center;
     color: $font-color;
 
-    .card_name {
+    &_name {
       display: flex;
       align-items: center;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
 
-      .card_executant_image {
+      &_executant-img {
         width: 25px;
         height: 25px;
         margin-right: 6px;
       }
     }
 
-    .card_title_actions {
+    &_actions {
       display: flex;
       align-items: center;
       display: none;
 
-      .card_actions_icon {
+      &_icon {
         fill: $font-color;
         height: 14px;
         margin: 0 3px;
@@ -47,7 +47,7 @@
     }
   }
 
-  &_body {
+  &__body {
     display: flex;
     flex-direction: column;
     margin-top: 6px;
@@ -58,23 +58,20 @@
       border-radius: 2px;
       margin-bottom: 2px;
     }
-    &_date-creat,
-    &_date-edit {
+    &_create-date,
+    &_edit-date {
       color: silver;
-    }
-
-    &_date-edit {
       font-style: italic;
     }
   }
 }
 
-.card:hover {
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+.card:hover .card__title_actions {
+  display: flex;
 }
 
-.card:hover .card_title_actions {
-  display: flex;
+.card:hover {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 }
 
 .card_GREEN {

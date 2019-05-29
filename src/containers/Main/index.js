@@ -121,7 +121,7 @@ class Main extends React.Component {
           userExit={this.props.userExit}
         />
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <div className="d-flex board">
+          <div className="d-flex main__board">
             {this.props.board.board.columns &&
               this.props.board.board.columns.map(column => {
                 return (

@@ -19,23 +19,23 @@ const CardModal = props => {
             <p>{props.executant}</p>
           </Form.Group>
         )}
-        <Form.Group as={Col} controlId="validationFormik02">
+        <Form.Group as={Col} controlId="validationFormik03">
           <Form.Label>Мітка</Form.Label>
           <div className="selected-label-block">
             <div className={`label label_${props.label}`} />
           </div>
         </Form.Group>
         {props.comment && (
-          <Form.Group as={Col} controlId="validationFormik02">
+          <Form.Group as={Col} controlId="validationFormik04">
             <Form.Label>Коментарій</Form.Label>
             <p>{props.comment}</p>
           </Form.Group>
         )}
-        <Form.Group as={Col} controlId="validationFormik02">
-          <Form.Label>Чек - ліст</Form.Label>
-          <div className="check-list">
-            {props.checkList.length > 0 ? (
-              props.checkList.map((checkItem, index) => {
+        {props.checkList.length > 0 && (
+          <Form.Group as={Col} controlId="validationFormik05">
+            <Form.Label>Чек - ліст</Form.Label>
+            <div className="check-list">
+              {props.checkList.map((checkItem, index) => {
                 return (
                   <CheckItem
                     key={index}
@@ -44,20 +44,18 @@ const CardModal = props => {
                     text={checkItem.text}
                   />
                 );
-              })
-            ) : (
-              <span>Чек - ліст пустий</span>
-            )}
-          </div>
-        </Form.Group>
-        <Form.Group as={Col} controlId="validationFormik02">
+              })}
+            </div>
+          </Form.Group>
+        )}
+        <Form.Group as={Col} controlId="validationFormik06">
           {props.image && (
             <div className="image-block">
               <img src={props.image} alt="CardImg" />
             </div>
           )}
         </Form.Group>
-        <Form.Group as={Col} controlId="validationFormik02">
+        <Form.Group as={Col} controlId="validationFormik07">
           <Form.Label>Час створення:</Form.Label>
           <p>{props.dateCreate}</p>
           {props.dateEdit && (

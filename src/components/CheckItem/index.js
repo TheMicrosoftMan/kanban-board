@@ -11,7 +11,8 @@ const CheckItem = props => {
         <Complete className="check-icon" />
       </div>
       <div
-        className={`check-item-text ${props.isCheck && "complete-text"}`}
+        className={`check-item__text ${props.isCheck &&
+          "check-item__text_complete"}`}
         onClick={() => props.checkClick && props.checkClick(props.id)}
       >
         {props.text}

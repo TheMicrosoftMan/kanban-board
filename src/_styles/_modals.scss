@@ -46,51 +46,6 @@
     display: flex;
     justify-content: space-between;
   }
-
-  .accept-btn,
-  .reject-btn,
-  .white-btn,
-  .purple-btn {
-    border: 2px solid rgb(29, 29, 29);
-    border-radius: 0;
-    width: max-content;
-    width: 49%;
-    font-size: 12pt;
-    line-height: 16pt;
-  }
-
-  .accept-btn {
-    background: $blue;
-  }
-
-  .accept-btn:hover {
-    background: #2b5797;
-  }
-
-  .reject-btn {
-    background: $red;
-  }
-
-  .reject-btn:hover {
-    background: #c20c0c;
-  }
-
-  .white-btn {
-    background: #fff;
-    color: #1d1d1d;
-  }
-
-  .white-btn:hover {
-    background: rgb(233, 233, 233);
-  }
-
-  .purple-btn {
-    background: $purple;
-  }
-
-  .purple-btn:hover {
-    background: #492d91;
-  }
 }
 
 .check-list,

@@ -16,11 +16,11 @@
     padding: 44px;
     border: 1px solid rgba(0, 0, 0, 0.4);
 
-    &_auth-blocks {
+    &__auth-blocks {
       display: flex;
     }
 
-    .logo {
+    &__logo {
       font-family: Amontillados;
       font-size: 50pt;
       line-height: 50pt;

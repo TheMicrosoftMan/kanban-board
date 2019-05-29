@@ -3,25 +3,25 @@ import TransparentButton from "../../components/TransparentButton";
 
 const Menu = props => {
   return (
-    <div className={`menu ${props.showMenu ? "show" : "hide"}`}>
-      <div className="menu-username">
+    <div className={`menu ${props.showMenu ? "menu_show" : "menu_hide"}`}>
+      <div className="menu__username">
         <img
-          className="username-image"
+          className="menu__username_image"
           src={`https://ui-avatars.com/api/?rounded=true&background=65aadd&color=fff&name=${
             props.username
           }`}
           alt={props.username}
         />
-        <span className="username">{props.username}</span>
+        <span className="menu__username_name">{props.username}</span>
       </div>
       <TransparentButton
         clickHandler={props.addColumn}
-        className="menu-btn"
+        className="wide-btn"
         value="Додати колонку"
       />
       <TransparentButton
         clickHandler={props.userExit}
-        className="menu-btn"
+        className="wide-btn"
         value="Вихід"
       />
     </div>

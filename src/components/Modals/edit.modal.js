@@ -163,7 +163,7 @@ class EditModal extends React.Component {
                   }}
                 />
               </Form.Group>
-              <Form.Group as={Col} controlId="validationFormik02">
+              <Form.Group as={Col} controlId="validationFormik03">
                 <Form.Label>Мітка</Form.Label>
                 <div className="selected-label-block">
                   <span className="selected-label-block_text">
@@ -190,7 +190,7 @@ class EditModal extends React.Component {
                   })}
                 </div>
               </Form.Group>
-              <Form.Group as={Col} controlId="validationFormik02">
+              <Form.Group as={Col} controlId="validationFormik04">
                 <Form.Label>Коментарій</Form.Label>
                 <textarea
                   className="form-control"
@@ -200,7 +200,7 @@ class EditModal extends React.Component {
                   }}
                 />
               </Form.Group>
-              <Form.Group as={Col} controlId="validationFormik02">
+              <Form.Group as={Col} controlId="validationFormik05">
                 <Form.Label>Чек - ліст</Form.Label>
                 <div className="check-list">
                   {this.state.checkList.length > 0 ? (
@@ -243,7 +243,7 @@ class EditModal extends React.Component {
                   </div>
                 </div>
               </Form.Group>
-              <Form.Group as={Col} controlId="validationFormik02">
+              <Form.Group as={Col} controlId="validationFormik06">
                 <Form.Label>Зображення</Form.Label>
                 <div className="image-block">
                   {this.state.image || initialState.image ? (
@@ -259,7 +259,7 @@ class EditModal extends React.Component {
               </Form.Group>
             </React.Fragment>
           )}
-          <Form.Group as={Col} controlId="validationFormik02">
+          <Form.Group as={Col} controlId="validationFormik07">
             <div className="buttons-group">
               <Button
                 className="accept-btn"

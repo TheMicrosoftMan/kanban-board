@@ -72,19 +72,19 @@ class Coloumn extends React.Component {
   render() {
     return (
       <div className="coloumn">
-        <div className="coloumn_title">
-          <span className="coloumn_name">{this.props.name}</span>
-          <div className="coloumn_title_actions">
+        <div className="coloumn__title">
+          <span className="coloumn__title_name">{this.props.name}</span>
+          <div className="coloumn__title_actions">
             <Add
-              className="coloumn_actions_icon"
+              className="coloumn__title_actions_icon"
               onClick={this.showAddCardModalHandler}
             />
             <Edit
-              className="coloumn_actions_icon"
+              className="coloumn__title_actions_icon"
               onClick={this.showEditModalHandler}
             />
             <Delete
-              className="coloumn_actions_icon"
+              className="coloumn__title_actions_icon"
               onClick={this.showDeleteModalHandler}
             />
           </div>
@@ -92,9 +92,9 @@ class Coloumn extends React.Component {
         <Droppable droppableId={this.props.id}>
           {provided => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
-              <div className="cards-place">
+              <div className="coloumn__cards-place">
                 {this.props.cards.length === 0 && (
-                  <span className="cards-place-text">
+                  <span className="coloumn__cards-place_text">
                     Ця колонка порожня. Поки що :)
                   </span>
                 )}

@@ -82,13 +82,13 @@ class Card extends React.Component {
           >
             <React.Fragment>
               <div className={`card ${labelColor}`}>
-                <div className="card_title">
+                <div className="card__title">
                   <div
-                    className="card_name"
+                    className="card__title_name"
                     onClick={this.showCardModalHandler}
                   >
                     <img
-                      className="card_executant_image"
+                      className="card__title_name_executant-img"
                       src={`https:ui-avatars.com/api/?rounded=true&background=65aadd&color=fff&name=${
                         this.props.executant
                       }`}
@@ -96,30 +96,30 @@ class Card extends React.Component {
                     />
                     {this.props.cardName}
                   </div>
-                  <div className="card_title_actions">
+                  <div className="card__title_actions">
                     <Edit
-                      className="card_actions_icon"
+                      className="card__title_actions_icon"
                       onClick={this.showEditModalHandler}
                     />
                     <Delete
-                      className="card_actions_icon"
+                      className="card__title_actions_icon"
                       onClick={this.showDeleteModalHandler}
                     />
                   </div>
                 </div>
-                <div className="card_body" onClick={this.showCardModalHandler}>
+                <div className="card__body" onClick={this.showCardModalHandler}>
                   {this.props.image && (
                     <img
-                      className="card_body_image"
+                      className="card__body_image"
                       src={this.props.image}
                       alt="CardImg"
                     />
                   )}
-                  <span className="card_body_date-creat">
+                  <span className="card__body_create-date">
                     Створено: {this.props.dateCreate}
                   </span>
                   {this.props.dateEdit && (
-                    <span className="card_body_date-edit">
+                    <span className="card__body_edit-date">
                       Відредаговано: {this.props.dateEdit}
                     </span>
                   )}

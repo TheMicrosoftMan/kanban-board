@@ -1,4 +1,4 @@
-import { boardConstants } from "../_constants";
+import { boardConstants, columnConstants, cardConstants } from "../_constants";
 
 const initialState = {
   board: []
@@ -30,75 +30,75 @@ export function board(state = initialState, action) {
       return {
         ...state
       };
-    case boardConstants.ADD_COLUMN_REQUEST:
+    case columnConstants.ADD_COLUMN_REQUEST:
       return {
         ...state
       };
-    case boardConstants.ADD_COLUMN_SUCCESS:
+    case columnConstants.ADD_COLUMN_SUCCESS:
       return {
         board: action.payload
       };
-    case boardConstants.ADD_COLUMN_ERROR:
+    case columnConstants.ADD_COLUMN_ERROR:
       return {
         ...state
       };
-    case boardConstants.UPDATE_COLUMN_REQUEST:
+    case columnConstants.UPDATE_COLUMN_REQUEST:
       return {
         ...state
       };
-    case boardConstants.UPDATE_COLUMN_SUCCESS:
+    case columnConstants.UPDATE_COLUMN_SUCCESS:
       return {
         board: action.payload.board
       };
-    case boardConstants.UPDATE_COLUMN_ERROR:
+    case columnConstants.UPDATE_COLUMN_ERROR:
       return {
         ...state
       };
-    case boardConstants.EDIT_COLUMN_REQUEST:
+    case columnConstants.EDIT_COLUMN_REQUEST:
       return {
         ...state
       };
-    case boardConstants.EDIT_COLUMN_SUCCESS:
+    case columnConstants.EDIT_COLUMN_SUCCESS:
       return {
         board: action.payload
       };
-    case boardConstants.EDIT_COLUMN_ERROR:
+    case columnConstants.EDIT_COLUMN_ERROR:
       return {
         ...state
       };
-    case boardConstants.DELETE_COLUMN_REQUEST:
+    case columnConstants.DELETE_COLUMN_REQUEST:
       return {
         ...state
       };
-    case boardConstants.DELETE_COLUMN_SUCCESS:
+    case columnConstants.DELETE_COLUMN_SUCCESS:
       return {
         board: action.payload
       };
-    case boardConstants.DELETE_COLUMN_ERROR:
+    case columnConstants.DELETE_COLUMN_ERROR:
       return {
         ...state
       };
-    case boardConstants.ADD_CARD_REQUEST:
+    case cardConstants.ADD_CARD_REQUEST:
       return {
         ...state
       };
-    case boardConstants.ADD_CARD_SUCCESS:
+    case cardConstants.ADD_CARD_SUCCESS:
       return {
         board: action.payload
       };
-    case boardConstants.ADD_CARD_ERROR:
+    case cardConstants.ADD_CARD_ERROR:
       return {
         ...state
       };
-    case boardConstants.EDIT_CARD_REQUEST:
+    case cardConstants.EDIT_CARD_REQUEST:
       return {
         ...state
       };
-    case boardConstants.EDIT_CARD_SUCCESS:
+    case cardConstants.EDIT_CARD_SUCCESS:
       return {
         board: action.payload
       };
-    case boardConstants.EDIT_CARD_ERROR:
+    case cardConstants.EDIT_CARD_ERROR:
       return {
         ...state
       };
@@ -106,11 +106,11 @@ export function board(state = initialState, action) {
       return {
         ...state
       };
-    case boardConstants.DELETE_CARD_SUCCESS:
+    case cardConstants.DELETE_CARD_SUCCESS:
       return {
         board: action.payload
       };
-    case boardConstants.DELETE_CARD_ERROR:
+    case cardConstants.DELETE_CARD_ERROR:
       return {
         ...state
       };

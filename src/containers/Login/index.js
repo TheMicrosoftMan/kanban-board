@@ -32,8 +32,8 @@ class Login extends React.Component {
     return (
       <div className="login">
         <div className="login-block">
-          <span className="logo">Kanban board</span>
-          <div className="login-block_auth-blocks">
+          <span className="login-block__logo">Kanban board</span>
+          <div className="login-block__auth-blocks">
             <SignBlock
               isLogin={true}
               signHandler={this.userLogin}

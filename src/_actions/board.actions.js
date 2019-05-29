@@ -1,4 +1,4 @@
-import { boardConstants } from "../_constants";
+import { boardConstants, columnConstants, cardConstants } from "../_constants";
 
 export const getBoard = login => dispatch => {
   dispatch({ type: boardConstants.GET_BOARD_REQUEST });
@@ -44,14 +44,14 @@ export const addBoard = login => dispatch => {
 };
 
 export const updateBoard = (login, newBoardColumns) => dispatch => {
-  dispatch({ type: boardConstants.UPDATE_COLUMN_REQUEST });
+  dispatch({ type: columnConstants.UPDATE_COLUMN_REQUEST });
   try {
     let board = {
       columns: newBoardColumns
     };
     localStorage.setItem(`${login}_board`, JSON.stringify(board));
     dispatch({
-      type: boardConstants.UPDATE_COLUMN_SUCCESS,
+      type: columnConstants.UPDATE_COLUMN_SUCCESS,
       payload: {
         board
       }
@@ -59,13 +59,13 @@ export const updateBoard = (login, newBoardColumns) => dispatch => {
   } catch (error) {
     console.error(error);
     dispatch({
-      type: boardConstants.UPDATE_COLUMN_ERROR
+      type: columnConstants.UPDATE_COLUMN_ERROR
     });
   }
 };
 
 export const addColumn = (login, columnName) => dispatch => {
-  dispatch({ type: boardConstants.ADD_COLUMN_REQUEST });
+  dispatch({ type: columnConstants.ADD_COLUMN_REQUEST });
   try {
     let board = JSON.parse(localStorage.getItem(`${login}_board`));
     let randID = Math.random() * (1000 - 1) + 1;
@@ -78,19 +78,19 @@ export const addColumn = (login, columnName) => dispatch => {
     localStorage.setItem(`${login}_board`, JSON.stringify(board));
 
     dispatch({
-      type: boardConstants.ADD_COLUMN_SUCCESS,
+      type: columnConstants.ADD_COLUMN_SUCCESS,
       payload: board
     });
   } catch (error) {
     console.error(error);
     dispatch({
-      type: boardConstants.ADD_COLUMN_ERROR
+      type: columnConstants.ADD_COLUMN_ERROR
     });
   }
 };
 
 export const editColumn = (login, columnID, newColumnName) => dispatch => {
-  dispatch({ type: boardConstants.EDIT_COLUMN_REQUEST });
+  dispatch({ type: columnConstants.EDIT_COLUMN_REQUEST });
   try {
     let board = JSON.parse(localStorage.getItem(`${login}_board`));
     let newColumnsArr = board.columns.map(column => {
@@ -104,19 +104,19 @@ export const editColumn = (login, columnID, newColumnName) => dispatch => {
     board.columns = newColumnsArr;
     localStorage.setItem(`${login}_board`, JSON.stringify(board));
     dispatch({
-      type: boardConstants.EDIT_COLUMN_SUCCESS,
+      type: columnConstants.EDIT_COLUMN_SUCCESS,
       payload: board
     });
   } catch (error) {
     console.error(error);
     dispatch({
-      type: boardConstants.EDIT_COLUMN_ERROR
+      type: columnConstants.EDIT_COLUMN_ERROR
     });
   }
 };
 
 export const deleteColumn = (login, columnID) => dispatch => {
-  dispatch({ type: boardConstants.DELETE_COLUMN_REQUEST });
+  dispatch({ type: columnConstants.DELETE_COLUMN_REQUEST });
   try {
     let board = JSON.parse(localStorage.getItem(`${login}_board`));
     let newColumnsArr = board.columns.filter(column => {
@@ -125,19 +125,19 @@ export const deleteColumn = (login, columnID) => dispatch => {
     board.columns = newColumnsArr;
     localStorage.setItem(`${login}_board`, JSON.stringify(board));
     dispatch({
-      type: boardConstants.DELETE_COLUMN_SUCCESS,
+      type: columnConstants.DELETE_COLUMN_SUCCESS,
       payload: board
     });
   } catch (error) {
     console.error(error);
     dispatch({
-      type: boardConstants.DELETE_COLUMN_ERROR
+      type: columnConstants.DELETE_COLUMN_ERROR
     });
   }
 };
 
 export const addCard = (login, columnID, card) => dispatch => {
-  dispatch({ type: boardConstants.ADD_CARD_REQUEST });
+  dispatch({ type: cardConstants.ADD_CARD_REQUEST });
   try {
     let board = JSON.parse(localStorage.getItem(`${login}_board`));
     let updatedColumn = board.columns.filter(column => {
@@ -154,19 +154,19 @@ export const addCard = (login, columnID, card) => dispatch => {
     board.columns = updatedColumns;
     localStorage.setItem(`${login}_board`, JSON.stringify(board));
     dispatch({
-      type: boardConstants.ADD_CARD_SUCCESS,
+      type: cardConstants.ADD_CARD_SUCCESS,
       payload: board
     });
   } catch (error) {
     console.error(error);
     dispatch({
-      type: boardConstants.ADD_CARD_ERROR
+      type: cardConstants.ADD_CARD_ERROR
     });
   }
 };
 
 export const editCard = (login, columnID, editedCard) => dispatch => {
-  dispatch({ type: boardConstants.EDIT_CARD_REQUEST });
+  dispatch({ type: cardConstants.EDIT_CARD_REQUEST });
   try {
     let board = JSON.parse(localStorage.getItem(`${login}_board`));
     let selectedColumn = board.columns.filter(column => {
@@ -190,19 +190,19 @@ export const editCard = (login, columnID, editedCard) => dispatch => {
     board.columns = updatedColumns;
     localStorage.setItem(`${login}_board`, JSON.stringify(board));
     dispatch({
-      type: boardConstants.EDIT_CARD_SUCCESS,
+      type: cardConstants.EDIT_CARD_SUCCESS,
       payload: board
     });
   } catch (error) {
     console.error(error);
     dispatch({
-      type: boardConstants.EDIT_CARD_ERROR
+      type: cardConstants.EDIT_CARD_ERROR
     });
   }
 };
 
 export const deleteCard = (login, columnID, cardID) => dispatch => {
-  dispatch({ type: boardConstants.DELETE_CARD_REQUEST });
+  dispatch({ type: cardConstants.DELETE_CARD_REQUEST });
   try {
     let board = JSON.parse(localStorage.getItem(`${login}_board`));
     let selectedColumn = board.columns.filter(column => {
@@ -226,13 +226,13 @@ export const deleteCard = (login, columnID, cardID) => dispatch => {
     board.columns = updatedColumns;
     localStorage.setItem(`${login}_board`, JSON.stringify(board));
     dispatch({
-      type: boardConstants.DELETE_CARD_SUCCESS,
+      type: cardConstants.DELETE_CARD_SUCCESS,
       payload: board
     });
   } catch (error) {
     console.error(error);
     dispatch({
-      type: boardConstants.DELETE_CARD_ERROR
+      type: cardConstants.DELETE_CARD_ERROR
     });
   }
 };

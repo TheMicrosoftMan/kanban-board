@@ -13,36 +13,29 @@
   color: $font-color;
   padding: 6px 0;
 
-  &-username {
+  &__username {
     display: flex;
     align-items: center;
-    font-family: "Munson";
-    font-size: 16pt;
+
     margin-left: 6px;
     margin-bottom: 6px;
 
-    img {
+    &_image {
       width: 44px;
       margin-right: 6px;
     }
+
+    &_name {
+      font-family: "Munson";
+      font-size: 16pt;
+    }
   }
 
-  &-btn {
-    color: $font-color;
-    width: 100%;
-    border: 0;
-    background: transparent;
+  &_show {
+    display: block;
   }
 
-  &-btn:hover {
-    color: #fff;
+  &_hide {
+    display: none;
   }
-}
-
-.show {
-  display: block;
-}
-
-.hide {
-  display: none;
 }
