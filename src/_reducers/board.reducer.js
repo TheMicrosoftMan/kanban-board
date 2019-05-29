@@ -42,6 +42,18 @@ export function board(state = initialState, action) {
       return {
         ...state
       };
+    case boardConstants.UPDATE_COLUMN_REQUEST:
+      return {
+        ...state
+      };
+    case boardConstants.UPDATE_COLUMN_SUCCESS:
+      return {
+        board: action.payload.board
+      };
+    case boardConstants.UPDATE_COLUMN_ERROR:
+      return {
+        ...state
+      };
     case boardConstants.EDIT_COLUMN_REQUEST:
       return {
         ...state

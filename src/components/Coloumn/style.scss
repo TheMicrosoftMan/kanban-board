@@ -57,6 +57,17 @@
   .add-card-btn:hover {
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
   }
+
+  .cards-place {
+    min-height: 15px;
+
+    &-text {
+      font-family: "Segoe UI";
+      font-style: italic;
+      font-size: 10pt;
+      color: dimgrey;
+    }
+  }
 }
 
 .coloumn:hover .coloumn_title_actions {

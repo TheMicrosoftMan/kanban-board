@@ -27,6 +27,12 @@
     color: $font-color;
   }
 
+  input:focus,
+  button:focus {
+    outline-style: none;
+    box-shadow: none;
+  }
+
   input {
     font-family: "Segoe UI";
     border: none;

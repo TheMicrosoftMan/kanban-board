@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Droppable } from "react-beautiful-dnd";
 import moment from "moment";
 import { Card } from "../Card";
 import TransparentButton from "../../components/TransparentButton";
@@ -88,23 +89,38 @@ class Coloumn extends React.Component {
             />
           </div>
         </div>
-        {this.props.cards.map(card => {
-          return (
-            <Card
-              key={card.id}
-              id={card.id}
-              cardName={card.name}
-              executant={card.author}
-              dateCreate={card.dateCreate}
-              dateEdit={card.dateEdit ? card.dateEdit : null}
-              label={card.label}
-              checkList={card.checkList}
-              comment={card.comment}
-              image={card.image}
-              parrentColumnID={this.props.id}
-            />
-          );
-        })}
+        <Droppable droppableId={this.props.id}>
+          {provided => (
+            <div ref={provided.innerRef} {...provided.droppableProps}>
+              <div className="cards-place">
+                {this.props.cards.length === 0 && (
+                  <span className="cards-place-text">
+                    Ця колонка порожня. Поки що :)
+                  </span>
+                )}
+                {this.props.cards.map((card, index) => {
+                  return (
+                    <Card
+                      index={index}
+                      key={card.id}
+                      id={card.id}
+                      cardName={card.name}
+                      executant={card.author}
+                      dateCreate={card.dateCreate}
+                      dateEdit={card.dateEdit ? card.dateEdit : null}
+                      label={card.label}
+                      checkList={card.checkList}
+                      comment={card.comment}
+                      image={card.image}
+                      parrentColumnID={this.props.id}
+                    />
+                  );
+                })}
+                {provided.placeholder}
+              </div>
+            </div>
+          )}
+        </Droppable>
         <TransparentButton
           value="+ Додати картку"
           clickHandler={this.showAddCardModalHandler}
