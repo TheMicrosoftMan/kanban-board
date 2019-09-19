@@ -89,9 +89,7 @@ class Card extends React.Component {
                   >
                     <img
                       className="card__title_name_executant-img"
-                      src={`https:ui-avatars.com/api/?rounded=true&background=65aadd&color=fff&name=${
-                        this.props.executant
-                      }`}
+                      src={`https://ui-avatars.com/api/?rounded=true&background=65aadd&color=fff&name=${this.props.executant}`}
                       alt={this.props.executant}
                     />
                     {this.props.cardName}
